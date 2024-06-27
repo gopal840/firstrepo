@@ -3,34 +3,6 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Web1",
-				"type": "WebActivity",
-				"dependsOn": [
-					{
-						"activity": "Wait1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"method": "POST",
-					"url": "https://management.azure.com/subscriptions/01bd22d7-2734-461f-9807-fe1969678d69/resourceGroups/gopal_test/providers/Microsoft.DataFactory/factories/adfnewgopi/pipelines/web2/createRun?api-version=2018-06-01",
-					"authentication": {
-						"type": "MSI",
-						"resource": "https://management.azure.com"
-					}
-				}
-			},
-			{
 				"name": "Wait1",
 				"type": "Wait",
 				"dependsOn": [],
