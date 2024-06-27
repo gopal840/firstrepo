@@ -22,22 +22,6 @@
 						"resource": "https://management.azure.com"
 					}
 				}
-			},
-			{
-				"name": "Wait1",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "Web1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
-				}
 			}
 		],
 		"annotations": [],
