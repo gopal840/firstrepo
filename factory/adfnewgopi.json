@@ -1,0 +1,9 @@
+{
+	"name": "adfnewgopi",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "165fc0e2-7beb-48d1-a1dc-9f046ee5b8d4",
+		"tenantId": "9583c25e-c5b9-4764-a800-90cc962db572"
+	}
+}

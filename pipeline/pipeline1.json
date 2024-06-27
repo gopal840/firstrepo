@@ -3,20 +3,38 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Wait1",
-				"type": "Wait",
+				"name": "Get Metadata1",
+				"type": "GetMetadata",
 				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
 				"userProperties": [],
 				"typeProperties": {
-					"waitTimeInSeconds": 1
+					"dataset": {
+						"referenceName": "Excel2",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
+						"enablePartitionDiscovery": false
+					}
 				}
 			},
 			{
-				"name": "If Condition1",
-				"type": "IfCondition",
+				"name": "first1",
+				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Wait1",
+						"activity": "Get Metadata1",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -24,42 +42,40 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "1=1",
+					"items": {
+						"value": "@activity('Get Metadata1').output.childItems",
 						"type": "Expression"
 					},
-					"ifTrueActivities": [
+					"isSequential": false,
+					"activities": [
 						{
-							"name": "Wait2",
-							"type": "Wait",
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
 							"dependsOn": [],
+							"policy": {
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 1
+								"pipeline": {
+									"referenceName": "pipeline2",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"pipefilename": {
+										"value": "@item().name",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
 				}
-			},
-			{
-				"name": "Wait3",
-				"type": "Wait",
-				"dependsOn": [
-					{
-						"activity": "If Condition1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"waitTimeInSeconds": 1
-				}
 			}
 		],
 		"annotations": [],
-		"lastPublishTime": "2024-06-26T09:43:04Z"
+		"lastPublishTime": "2024-06-24T10:33:09Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
