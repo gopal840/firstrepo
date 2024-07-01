@@ -92,32 +92,8 @@
 												"writeBehavior": "insert",
 												"sqlWriterUseTableLock": false
 											},
-											"enableStaging": false,
-											"translator": {
-												"type": "TabularTranslator",
-												"typeConversion": true,
-												"typeConversionSettings": {
-													"allowDataTruncation": true,
-													"treatBooleanAsNumber": false
-												}
-											}
+											"enableStaging": false
 										},
-										"inputs": [
-											{
-												"referenceName": "Excel4",
-												"type": "DatasetReference",
-												"parameters": {
-													"sheetnamed": {
-														"value": "@item().sheetname",
-														"type": "Expression"
-													},
-													"filenamed": {
-														"value": "@pipeline().parameters.pipefilename",
-														"type": "Expression"
-													}
-												}
-											}
-										],
 										"outputs": [
 											{
 												"referenceName": "AzureSqlTable3",
